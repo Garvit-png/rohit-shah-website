@@ -1,4 +1,5 @@
 import { type MouseEvent } from 'react';
+import Plasma from './Plasma';
 
 const scrollTo = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
   e.preventDefault();
@@ -11,8 +12,40 @@ const scrollTo = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
 const Hero = () => {
   return (
     <section id="home" className="hero">
+
+      {/* ── Plasma background ── */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        zIndex: 0,
+        opacity: 0.18,       /* subtle — won't overpower text */
+        pointerEvents: 'none',
+      }}>
+        <Plasma
+          color="#216ade"
+          speed={0.6}
+          direction="forward"
+          scale={1}
+          opacity={1}
+          mouseInteractive={false}
+          renderScale={0.45}
+          maxDpr={1.5}
+          targetFps={30}
+          iterations={50}
+        />
+      </div>
+
+      {/* ── extra vignette so edges stay dark ── */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        zIndex: 1,
+        background: 'radial-gradient(ellipse at center, transparent 30%, var(--black) 90%)',
+        pointerEvents: 'none',
+      }} />
+
       {/* Left */}
-      <div className="hero-left">
+      <div className="hero-left" style={{ position: 'relative', zIndex: 2 }}>
         <h1
           className="hero-title"
           style={{ animation: 'heroSlideUp 0.75s cubic-bezier(0.22,1,0.36,1) 0.2s both' }}
@@ -55,7 +88,11 @@ const Hero = () => {
       {/* Right */}
       <div
         className="hero-image-wrap"
-        style={{ animation: 'heroSlideRight 0.85s cubic-bezier(0.22,1,0.36,1) 0.3s both' }}
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          animation: 'heroSlideRight 0.85s cubic-bezier(0.22,1,0.36,1) 0.3s both',
+        }}
       >
         <div className="hero-glow" />
         <div className="hero-img-box">
@@ -73,6 +110,7 @@ const Hero = () => {
           />
         </div>
       </div>
+
     </section>
   );
 };

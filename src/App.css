@@ -113,11 +113,21 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 100%;
   padding: 7rem 2rem 4rem;
   gap: 3rem;
   position: relative;
+  overflow: hidden;
+}
+
+.hero > .hero-left,
+.hero > .hero-image-wrap {
+  max-width: 600px;
+}
+
+/* constrain content width inside full-width hero */
+.hero-left {
+  margin-left: max(2rem, calc((100vw - 1200px) / 2));
 }
 
 /* ambient glow behind hero */
