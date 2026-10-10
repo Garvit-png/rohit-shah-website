@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import LightTunnel from './LightTunnel';
 
 const stats = [
   { num: '654K+',    label: 'Instagram Followers' },
@@ -87,7 +88,7 @@ const ScrollVideoSection = () => {
           background: 'var(--black)',
         }}
       >
-        {/* video wrapper */}
+        {/* LightTunnel wrapper */}
         <div
           ref={wrapperRef}
           style={{
@@ -100,19 +101,36 @@ const ScrollVideoSection = () => {
             willChange: 'width, border-radius, box-shadow',
           }}
         >
-          {/* video itself */}
-          <video
-            src="/rohit_video.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              display: 'block',
-            }}
+          {/* LightTunnel background */}
+          <LightTunnel
+            cableColor="#F43F5E"
+            pulseColor="#FF0040"
+            tunnelColor="#8B0000"
+            tunnelOpacity={0.3}
+            speed={0.15}
+            flowDirection="outward"
+            pulseSpeed={2.5}
+            pulseLength={0.3}
+            pulseBlend={1}
+            pulseWidth={1}
+            cableCount={24}
+            thickness={0.4}
+            rimWidth={0.2}
+            waviness={0.4}
+            sway={0.6}
+            size={1.0}
+            centerX={0}
+            centerY={0}
+            glow={1.5}
+            fadeNear={0.5}
+            fadeFar={2}
+            brightness={1.2}
+            colorVariance
+            grain
+            grainIntensity={0.05}
+            opacity={1}
+            mouseInteraction={false}
+            mouseStrength={0.1}
           />
 
           {/* dark overlay so stats text is legible */}
