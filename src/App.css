@@ -1724,3 +1724,100 @@
     gap: 1.5rem;
   }
 }
+
+
+/* Footer Email */
+.footer-email {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.footer-email a {
+  color: var(--blue);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-email a:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+/* Footer Instagram Links */
+.footer-insta-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-insta-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #FCAF45 100%);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--white);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-insta-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #405DE6 0%, #5851DB 20%, #833AB4 40%, #C13584 60%, #E1306C 80%, #FD1D1D 100%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.footer-insta-btn:hover::before {
+  opacity: 1;
+}
+
+.footer-insta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(225, 48, 108, 0.4);
+}
+
+.footer-insta-btn svg {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-insta-btn > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+.insta-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.insta-handle {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .footer-insta-btn {
+    padding: 0.85rem;
+  }
+  
+  .insta-label {
+    font-size: 0.8rem;
+  }
+  
+  .insta-handle {
+    font-size: 0.7rem;
+  }
+}
