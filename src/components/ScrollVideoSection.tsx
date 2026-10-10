@@ -159,7 +159,7 @@ const ScrollVideoSection = () => {
                     color: 'var(--blue)',
                     lineHeight: 1,
                     marginBottom: '0.4rem',
-                    textShadow: '0 0 24px rgba(59,130,246,0.7), 0 2px 8px rgba(0,0,0,0.8)',
+                    textShadow: '0 0 24px rgba(244,63,94,0.7), 0 2px 8px rgba(0,0,0,0.8)',
                   }}
                 >
                   {s.num}

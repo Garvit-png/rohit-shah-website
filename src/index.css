@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --black: #0a0a0a;
-  --black2: #111111;
-  --black3: #1a1a1a;
+  --black: #0a0005;
+  --black2: #110008;
+  --black3: #1a000d;
   --white: #ffffff;
-  --blue: #3b82f6;
-  --blue-dark: #2563eb;
-  --blue-glow: rgba(59, 130, 246, 0.15);
+  --blue: #F43F5E;
+  --blue-dark: #e11d48;
+  --blue-glow: rgba(244, 63, 94, 0.15);
   --gray: #6b7280;
   --gray-light: #9ca3af;
-  --gray-border: #1f1f1f;
+  --gray-border: #2a0a14;
   --text-muted: #6b7280;
 }
 
@@ -37,7 +37,7 @@ body {
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--black); }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--blue), var(--blue-dark));
+  background: linear-gradient(180deg, #F43F5E, #e11d48);
   border-radius: 2px;
 }
 
