@@ -6,11 +6,11 @@ import WhatIDo from './components/WhatIDo';
 import About from './components/About';
 import WorkWithMe from './components/WorkWithMe';
 import MardShow from './components/MardShow';
+import Ebooks from './components/Ebooks';
 import Transformations from './components/Transformations';
 import BrandCollab from './components/BrandCollab';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import FloatingCTA from './components/FloatingCTA';
 
 function App() {
   return (
@@ -23,12 +23,12 @@ function App() {
         <About />
         <WorkWithMe />
         <MardShow />
+        <Ebooks />
         <Transformations />
         <BrandCollab />
         <Contact />
       </main>
       <Footer />
-      <FloatingCTA />
     </>
   );
 }

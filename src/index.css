@@ -23,6 +23,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 64px;
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -31,7 +32,9 @@ body {
   color: var(--white);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
 }
 
 ::-webkit-scrollbar { width: 4px; }
@@ -149,4 +152,31 @@ body::before {
   opacity: 0.025;
   pointer-events: none;
   z-index: 9999;
+}
+
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* GPU acceleration for transforms */
+.card,
+.ebook-card,
+.hero-v2__photo-wrap,
+.navbar {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Optimize images */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }

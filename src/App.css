@@ -396,47 +396,80 @@
   padding: 2rem;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.35s, transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s;
+  transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
 }
 
 .card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--blue);
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), #FF3D5C);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 0 20px rgba(244, 63, 94, 0.8);
 }
 
 .card::after {
   content: '';
   position: absolute;
-  bottom: -60px; right: -60px;
-  width: 120px; height: 120px;
-  background: var(--blue);
+  bottom: -80px; right: -80px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(244, 63, 94, 0.4) 0%, transparent 70%);
   border-radius: 50%;
-  filter: blur(40px);
+  filter: blur(50px);
   opacity: 0;
-  transition: opacity 0.4s;
+  transition: opacity 0.5s, transform 0.5s;
 }
 
 .card:hover {
-  border-color: rgba(244, 63, 94, 0.35);
-  transform: translateY(-6px);
-  box-shadow: 0 16px 48px rgba(244, 63, 94, 0.12);
+  border-color: rgba(244, 63, 94, 0.6);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 
+    0 20px 60px rgba(244, 63, 94, 0.25),
+    0 0 40px rgba(244, 63, 94, 0.15),
+    inset 0 0 80px rgba(244, 63, 94, 0.05);
+  background: linear-gradient(135deg, var(--black2) 0%, rgba(244, 63, 94, 0.05) 100%);
 }
-.card:hover::before { transform: scaleX(1); }
-.card:hover::after  { opacity: 0.08; }
+
+.card:hover::before { 
+  transform: scaleX(1);
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.card:hover::after {
+  opacity: 0.3;
+  transform: translate(-20px, -20px);
+}
+
+@keyframes glowPulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(244, 63, 94, 0.8);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(244, 63, 94, 1), 0 0 60px rgba(255, 61, 92, 0.6);
+  }
+}
 
 .card-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1.25rem;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
   display: block;
-  transition: transform 0.3s;
+  filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.3));
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.card:hover .card-icon { transform: scale(1.12) rotate(-3deg); }
+
+.card:hover .card-icon {
+  transform: scale(1.15) translateY(-5px);
+  filter: drop-shadow(0 0 25px rgba(244, 63, 94, 0.8));
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: scale(1.15) translateY(-5px); }
+  50% { transform: scale(1.15) translateY(-10px); }
+}
 
 .card-title {
   font-family: 'Bebas Neue', sans-serif;
@@ -1477,8 +1510,11 @@
   flex-direction: column;
   align-items: center;
   opacity: 1;
-  will-change: transform, z-index;
+  will-change: transform;
   transform-origin: bottom center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.5s ease-out, opacity 0.3s ease-out;
 }
 
 .hero-v2__photo {
@@ -1488,6 +1524,8 @@
   object-fit: contain;
   object-position: bottom center;
   filter: drop-shadow(0 -8px 50px rgba(244,63,94,0.5)) brightness(1.1);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 
@@ -1550,5 +1588,139 @@
   .hero-v2__buttons a {
     width: 100%;
     text-align: center;
+  }
+}
+
+
+/* ================================
+   EBOOKS SECTION
+   ================================ */
+.ebooks-section {
+  padding: 6rem 2rem;
+  background: var(--black);
+  border-top: 1px solid var(--gray-border);
+}
+
+.ebooks-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ebooks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.ebook-card {
+  background: var(--black2);
+  border: 1px solid var(--gray-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.ebook-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), #FF3D5C);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ebook-card:hover {
+  border-color: rgba(244, 63, 94, 0.6);
+  transform: translateY(-10px);
+  box-shadow: 
+    0 25px 70px rgba(244, 63, 94, 0.3),
+    0 0 50px rgba(244, 63, 94, 0.2);
+}
+
+.ebook-card:hover::before {
+  transform: scaleX(1);
+}
+
+.ebook-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+}
+
+.ebook-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ebook-card:hover .ebook-image {
+  transform: scale(1.1);
+}
+
+.ebook-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 50%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.ebook-card:hover .ebook-overlay {
+  opacity: 1;
+}
+
+.ebook-cta {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 20px rgba(244, 63, 94, 0.8);
+}
+
+.ebook-content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ebook-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.ebook-description {
+  font-size: 0.875rem;
+  color: var(--gray-light);
+  line-height: 1.6;
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .ebooks-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
   }
 }

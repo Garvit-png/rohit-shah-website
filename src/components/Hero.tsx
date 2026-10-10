@@ -12,89 +12,84 @@ const scrollTo = (e: MouseEvent<HTMLAnchorElement>, id: string) => {
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const photoWrapRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef(0);
+  const isCompleteRef = useRef(false);
 
   useEffect(() => {
-    let accumulatedScroll = 0;
-    const MAX_PHOTO_SCROLL = 1500; // Amount of scroll needed to fully reveal photo
-    let isPhotoComplete = false;
+    const SCROLL_NEEDED = 2000; // Total scroll distance needed
+    let rafId: number | null = null;
     
-    const updatePhotoPosition = () => {
+    const updatePhoto = () => {
       const wrap = photoWrapRef.current;
       if (!wrap) return;
 
-      // Progress: 0 (small/hidden) → 1 (fully enlarged)
-      const progress = Math.min(accumulatedScroll / MAX_PHOTO_SCROLL, 1);
+      const progress = progressRef.current;
       
-      // Photo translateY: starts WAY below (150vh), rises to final position (0)
+      // Photo rises from below (150vh to 0)
       const translateY = (1 - progress) * 150;
       
-      // Scale: starts tiny at 0.2 and grows to 1.3
+      // Photo scales up (0.2 to 1.3)
       const scale = 0.2 + (progress * 1.1);
       
-      // z-index increases as photo grows
+      // Z-index
       const zIndex = Math.floor(progress * 50) + 10;
       
-      // Opacity: always 1, no fade effect
-      const opacity = 1;
-      
-      // Always absolute - photo is part of hero section
       wrap.style.position = 'absolute';
       wrap.style.bottom = '0';
       wrap.style.left = '50%';
       wrap.style.transform = `translate(-50%, ${translateY}vh) scale(${scale})`;
       wrap.style.zIndex = zIndex.toString();
-      wrap.style.opacity = opacity.toString();
+      wrap.style.opacity = '1';
     };
 
     const handleWheel = (e: WheelEvent) => {
+      // If animation already complete, allow natural scroll
+      if (isCompleteRef.current) return;
+      
       const section = sectionRef.current;
       if (!section) return;
-      
+
       const rect = section.getBoundingClientRect();
-      const isInHeroView = rect.top <= 0 && rect.bottom > window.innerHeight * 0.5;
       
-      // Only hijack scroll when in hero section and photo not at final size
-      if (isInHeroView && !isPhotoComplete) {
-        e.preventDefault();
+      // Only work when hero is visible
+      if (rect.top > 0 || rect.bottom < 0) return;
+
+      // Prevent default scroll
+      e.preventDefault();
+      
+      // Update progress
+      progressRef.current += e.deltaY / SCROLL_NEEDED;
+      progressRef.current = Math.max(0, Math.min(1, progressRef.current));
+      
+      // Update visual
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(updatePhoto);
+      
+      // Check if complete
+      if (progressRef.current >= 1) {
+        isCompleteRef.current = true;
+        progressRef.current = 1;
         
-        // Accumulate scroll for photo animation (bidirectional)
-        accumulatedScroll += e.deltaY;
-        accumulatedScroll = Math.max(0, Math.min(MAX_PHOTO_SCROLL, accumulatedScroll));
-        
-        updatePhotoPosition();
-        
-        // Release scroll lock when photo reaches perfect size
-        if (accumulatedScroll >= MAX_PHOTO_SCROLL) {
-          isPhotoComplete = true;
-        } else {
-          isPhotoComplete = false;
-        }
+        // Allow page to scroll after small delay
+        setTimeout(() => {
+          document.body.style.overflow = '';
+        }, 100);
       }
     };
 
     const handleScroll = () => {
-      const section = sectionRef.current;
-      if (!section) return;
-      
-      const rect = section.getBoundingClientRect();
-      
-      // If coming back into hero view from below, allow photo to reverse
-      if (rect.top > -100 && rect.top < window.innerHeight) {
-        if (accumulatedScroll > 0 && window.scrollY < 100) {
-          isPhotoComplete = false;
-        }
-      }
-      
-      // If at very top, reset everything
+      // Reset when back at top
       if (window.scrollY === 0) {
-        accumulatedScroll = 0;
-        isPhotoComplete = false;
-        updatePhotoPosition();
+        progressRef.current = 0;
+        isCompleteRef.current = false;
+        document.body.style.overflow = '';
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(updatePhoto);
       }
     };
     
-    // Initial state
-    updatePhotoPosition();
+    // Initialize
+    updatePhoto();
     
     window.addEventListener('wheel', handleWheel, { passive: false });
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -102,6 +97,8 @@ const Hero = () => {
     return () => {
       window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('scroll', handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+      document.body.style.overflow = '';
     };
   }, []);
 

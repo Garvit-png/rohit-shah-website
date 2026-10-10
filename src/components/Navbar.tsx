@@ -23,12 +23,13 @@ const Navbar = () => {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-inner">
         <a href="#home" className="nav-logo" onClick={(e) => scrollTo(e, 'home')}>
-          ROHIT <span>SAH</span>
+          ROHIT <span>SHAH</span>
         </a>
 
         <ul className="nav-links">
           <li><a href="#about" onClick={(e) => scrollTo(e, 'about')}>About</a></li>
           <li><a href="#work-with-me" onClick={(e) => scrollTo(e, 'work-with-me')}>Work With Me</a></li>
+          <li><a href="#ebooks" onClick={(e) => scrollTo(e, 'ebooks')}>eBooks</a></li>
           <li><a href="#mard-show" onClick={(e) => scrollTo(e, 'mard-show')}>The Mard Show</a></li>
           <li><a href="#transformations" onClick={(e) => scrollTo(e, 'transformations')}>Results</a></li>
           <li><a href="#contact" onClick={(e) => scrollTo(e, 'contact')}>Contact</a></li>
