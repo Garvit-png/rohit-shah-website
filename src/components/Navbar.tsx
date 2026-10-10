@@ -36,9 +36,9 @@ const Navbar = () => {
         </ul>
 
         <a
-          href="#work-with-me"
+          href="#contact"
           className="btn-book-nav"
-          onClick={(e) => scrollTo(e, 'work-with-me')}
+          onClick={(e) => scrollTo(e, 'contact')}
         >
           Book a Call
         </a>

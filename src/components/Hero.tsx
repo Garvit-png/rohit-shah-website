@@ -164,9 +164,9 @@ const Hero = () => {
             style={{ animation: 'heroSlideUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.55s both' }}
           >
             <a
-              href="#work-with-me"
+              href="#contact"
               className="btn-primary"
-              onClick={(e) => scrollTo(e, 'work-with-me')}
+              onClick={(e) => scrollTo(e, 'contact')}
             >
               Book a 1:1 Call
             </a>
