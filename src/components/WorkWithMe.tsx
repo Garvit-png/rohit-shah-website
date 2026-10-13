@@ -120,12 +120,15 @@ const WorkWithMe = () => {
           {packages.map((p, i) => (
             <div key={i} className={`pkg-card ${p.featured ? 'featured' : ''}`} style={{ position: 'relative' }}>
               {p.badge && <span className="pkg-badge">{p.badge}</span>}
+              <span className="pkg-coming-soon">Coming Soon</span>
               <div className="pkg-name">{p.name}</div>
-              <div className="pkg-price">{p.price} <span>{p.per}</span></div>
+              <div className="pkg-price-skeleton">
+                <div className="price-shimmer"></div>
+              </div>
               <ul className="pkg-features">
                 {p.features.map((f, j) => <li key={j}>{f}</li>)}
               </ul>
-              <button className="btn-pkg">Book Now</button>
+              <button className="btn-pkg" disabled style={{ opacity: 0.5, cursor: 'not-allowed' }}>Coming Soon</button>
             </div>
           ))}
         </div>

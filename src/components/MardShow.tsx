@@ -10,18 +10,9 @@ const MardShow = () => {
     <section id="mard-show" className="mard-show">
       <div className="mard-show-inner">
         <div className="mard-embed reveal-scale" ref={leftRef}>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '1rem',
-              color: 'var(--gray)',
-              fontSize: '0.85rem',
-            }}
-          >
-            <div className="video-play-btn" role="button" aria-label="Watch The Mard Show">▶</div>
-            <span>Watch Latest Episode</span>
+          <div className="coming-soon-container">
+            <div className="skeleton-loader"></div>
+            <div className="coming-soon-text">Coming Soon</div>
           </div>
         </div>
 
@@ -47,9 +38,6 @@ const MardShow = () => {
           </div>
 
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <a href="https://youtube.com" className="btn-primary" target="_blank" rel="noopener noreferrer">
-              ▶ Watch on YouTube
-            </a>
             <a href="https://instagram.com/themardshow" className="btn-outline" target="_blank" rel="noopener noreferrer">
               Follow @themardshow
             </a>

@@ -19,9 +19,28 @@ const Contact = () => {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    
+    const formData = new FormData();
+    formData.append('name', form.name);
+    formData.append('email', form.email);
+    formData.append('whatsapp', form.whatsapp);
+    formData.append('type', form.type);
+    formData.append('message', form.message);
+    formData.append('_subject', `New ${form.type} enquiry from ${form.name}`);
+    formData.append('_template', 'table');
+
+    try {
+      await fetch('https://formsubmit.co/rohitfitwork@gmail.com', {
+        method: 'POST',
+        body: formData,
+      });
+      setSubmitted(true);
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('Something went wrong. Please email directly at rohitfitwork@gmail.com');
+    }
   };
 
   return (

@@ -21,9 +21,9 @@ function App() {
         <ScrollVideoSection />
         <WhatIDo />
         <About />
+        <Ebooks />
         <WorkWithMe />
         <MardShow />
-        <Ebooks />
         <Transformations />
         <BrandCollab />
         <Contact />
