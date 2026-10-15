@@ -23,7 +23,7 @@ const Navbar = () => {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-inner">
         <a href="#home" className="nav-logo" onClick={(e) => scrollTo(e, 'home')}>
-          ROHIT <span>SHAH</span>
+          ROHIT <span>SAH</span>
         </a>
 
         <ul className="nav-links">

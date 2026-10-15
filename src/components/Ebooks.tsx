@@ -49,7 +49,7 @@ const Ebooks = () => {
           <span className="section-label">Digital Products</span>
           <h2 className="section-title">
             eBooks by<br />
-            <span className="text-blue">Rohit Shah</span>
+            <span className="text-blue">Rohit Sah</span>
           </h2>
           <p className="section-subtitle">
             No fluff. No theories. Just practical guides based on real experience.
