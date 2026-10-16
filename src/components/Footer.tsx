@@ -16,7 +16,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <div className="footer-brand-name">
-              ROHIT <span>SHAH</span>
+              ROHIT <span>SAH</span>
             </div>
             <p className="footer-brand-desc">
               Fitpreneur. Founder of The Mard Show. Helping young Indian men build the body,
