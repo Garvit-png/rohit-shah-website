@@ -170,14 +170,6 @@ const Hero = () => {
             >
               Book a 1:1 Call
             </a>
-            <a
-              href="https://youtube.com"
-              className="btn-outline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Watch on YouTube
-            </a>
           </div>
         </div>
 
