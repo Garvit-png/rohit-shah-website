@@ -8,7 +8,6 @@ import WorkWithMe from './components/WorkWithMe';
 import MardShow from './components/MardShow';
 import Ebooks from './components/Ebooks';
 import Transformations from './components/Transformations';
-import BrandCollab from './components/BrandCollab';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -25,7 +24,6 @@ function App() {
         <WorkWithMe />
         <MardShow />
         <Transformations />
-        <BrandCollab />
         <Contact />
       </main>
       <Footer />
