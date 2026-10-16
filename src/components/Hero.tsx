@@ -170,6 +170,13 @@ const Hero = () => {
             >
               Book a 1:1 Call
             </a>
+            <a
+              href="#ebooks"
+              className="btn-outline"
+              onClick={(e) => scrollTo(e, 'ebooks')}
+            >
+              Browse eBooks
+            </a>
           </div>
         </div>
 
